@@ -5,6 +5,9 @@ FROM microscaler/flutter-dart-base:${VERSION}
 RUN set -eux; flutter config --no-analytics --enable-web \
     && flutter precache --universal --web
 
+# https://security.snyk.io/vuln/SNYK-ALPINE316-EXPAT-3062883
+RUN apk upgrade expat
+
 # Add lables
 LABEL name="plugfox/flutter:${VERSION}-web" \
     description="Alpine with flutter & dart for web" \
